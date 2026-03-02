@@ -79,11 +79,11 @@ let cookieHeader =
 "__hdnea__=st=1772450931~exp=1772537331~acl=/*~hmac=dc35e4a3c611bfa3bf0e6cd468c9effc4eb8921f4f67a9e339875fb1c6a8dd4f";
 
 let streamUrl =
-"https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports_1_Hindi_BTS/output/index.mpd";
+"https://jiotvbpkmob.cdn.jio.com/bpk-tv/Star_Sports_1_Hindi_BTS/output/index.mpd";
 
 try {
 const response = await fetch(
-'https://allrounderid.pages.dev/api/jiotv2.json'
+'https://raw.githubusercontent.com/vaathala00/jow/main/output.json'
 );
 const data = await response.json();
 
@@ -100,7 +100,7 @@ let usingBackupCookie = false;
 
 async function fetchBackupCookie() {
 if (backupCookie) return backupCookie;
-const res = await fetch('https://crickettv.site/api/cookie.json');
+const res = await fetch('https://raw.githubusercontent.com/vaathala00/jow/main/output.json');
 const data = await res.json();
 backupCookie = data.cookie;
 return backupCookie;

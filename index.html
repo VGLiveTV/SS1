@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Star Sports 1 Hindi</title>
+  <title>Star Sports 1 Hindi HD</title>
   <meta name="referrer" content="no-referrer">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js"></script>
@@ -59,13 +59,25 @@
       keyId: "8ea9b607549252068e260a5f4d7dd321",
       key: "350c0aaffedf51cc1502e9543c7c885e",
 
-      manualCookie: "__hdnea__=st=1774246342~exp=1774332742~acl=/*~hmac=d1e39f693c3017e7e3d71b9a1b484c72acf4623941d13c40e278fa0b2fd7a776",
+      manualCookie: "__hdnea__=st=1774263443~exp=1774349843~acl=/*~hmac=950ff90830cc197557824598f9995d8535d4654a0de76466ff53597e5ade4c8",
     };
 
     document.addEventListener('DOMContentLoaded', async () => {
 
       shaka.polyfill.installAll();
       if (!shaka.Player.isBrowserSupported()) return;
+
+      // FETCH LIVE COOKIE FROM GITHUB
+      try {
+        const cookieRes = await fetch("https://raw.githubusercontent.com/vaathala00/jow/main/output.json");
+        const cookieData = await cookieRes.json();
+        // Extract cookie from the first channel object in the JSON
+        if (cookieData && cookieData.length > 0 && cookieData[0].cookie) {
+          CONFIG.manualCookie = cookieData[0].cookie;
+        }
+      } catch (e) {
+        console.error("Failed to fetch live cookie, using fallback", e);
+      }
 
       const videoEl = document.getElementById('video');
       const container = document.getElementById('player-container');
